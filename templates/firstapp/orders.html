@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+
+
+            <div class="col-md-6 order-md-1" data-aos="fade-up">
+                <div class="text-left pb-1 border-primary mb-4">
+                    <h2 class="text-primary">Тапсырыстар</h2>
+                </div>
+                <form action="{% url 'orders' %}" method="post" class="p-5 bg-white">
+                    {% csrf_token %}
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label class="text-black">Мекеме</label>
+                            {{ form.organization }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label class="text-black">Курьер</label>
+                            {{ form.courier }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label class="text-black">Сатылым</label>
+                            {{ form.platej }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label class="text-black">Жоспарлы уақыт</label>
+                            {{ form.data }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Қосу" class="btn btn-primary py-2 px-4 text-white">
+                            <form>
+                                <input type="button" value="Басып шығару" onclick="window.print()"
+                                       class="btn btn-primary py-2 px-4 text-white">
+                            </form>
+                        </div>
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Курьер</th>
+                <th scope="col">Курьер телефон номері</th>
+                <th scope="col">Сатылым</th>
+                <th scope="col">Жөнелтілді</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ order.courier.first_name }} {{ order.courier.last_name }}</td>
+                <td>{{ order.courier.phone }}</td>
+                <td>{{ order.platej }}</td>
+                <td>{{ order.data }}</td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+
+
+            <div class="col-md-6 order-md-1" data-aos="fade-up">
+                <div class="text-left pb-1 border-primary mb-4">
+                    <h2 class="text-primary">Сатылымдар</h2>
+                </div>
+
+        <h3 style="color:red">{{ error }}</h3>
+                <form action="{% url 'sales' %}" method="post" class="p-5 bg-white">
+                    {% csrf_token %}
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label class="text-black">Мекеме</label>
+                            {{ form.organization }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label class="text-black">Келісім-шарт</label>
+                            {{ form.dogovor }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-black">Тауар</label>
+                            {{ form.product }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+
+                       <div class="col-md-6">
+                            <label class="text-black">Төлем түрі</label>
+                            {{ form.oplata }}
+                        </div>
+                       <div class="col-md-6">
+                            <label class="text-black">Саны</label>
+                            {{ form.count }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label class="text-black">Мекен-жай</label>
+                            {{ form.address }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-black">Сумма</label>
+                            {{ form.sum }}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label class="text-black">Cтатус</label>
+                            {{ form.status }}
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Қосу" class="btn btn-primary py-2 px-4 text-white">
+                            <form>
+                                <input type="button" value="Басып шығару" onclick="window.print()"
+                                       class="btn btn-primary py-2 px-4 text-white">
+                            </form>
+                        </div>
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Келісім-шарт</th>
+                <th scope="col">Тауар</th>
+                <th scope="col">Төлем түрі</th>
+                <th scope="col">Мекен-жай</th>
+                <th scope="col">Сумма</th>
+                <th scope="col">Саны</th>
+                <th scope="col">НДС</th>
+                <th scope="col">Табыс</th>
+                <th scope="col">Статус</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in platej %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ p.dogovor }}</td>
+                <td>{{ p.product }}</td>
+                <td>{{ p.oplata }}</td>
+                <td>{{ p.address }}</td>
+                <td>{{ p.sum }} ₸</td>
+                <td>{{ p.count }}</td>
+                <td>{{ p.ndc }} ₸</td>
+
+
+                <td>{{ p.profit }} ₸</td>
+                <td>
+                    {{ p.status }}
+                </td>
+            </tr>
+            {% endfor %}
+
+            <tr>
+                <th scope="row"></th>
+                <td class="row"><strong>Барлығы</strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong>{{ total_sum }} ₸</strong></td>
+                <td><strong>{{ total_ndc }} ₸</strong></td>
+                <td><strong>{{ total_profit }} ₸</strong></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

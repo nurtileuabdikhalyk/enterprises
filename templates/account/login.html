@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% load account %}
+
+{% block title %}Кіру{% endblock %}
+
+{% block content %}
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<section class="page-top-section set-bg" data-setbg="{% static 'img/page-top-bg.jpg' %}">
+    <div class="container text-white">
+        <h2>s</h2>
+    </div>
+</section>
+<section class="vh-100" >
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center" style="background-color:#a19f9f;">
+
+                            <label style="color:#ff0000;">{{ messages }}</label>
+                        <form class="login" method="POST" action="{% url 'signin' %}">
+                            {% csrf_token %}
+                            <div class="form-outline mb-4">
+                                {{ form.login }}
+
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                {{ form.password }}
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary py-3 px-5 text-white">Кіру</button>
+
+                            <div class="form-outline mb-4">
+                               <h5> <a href="{% url 'signup' %}">Жүйеде тіркелмегенсіз бе?</a></h5>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

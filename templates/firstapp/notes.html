@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+
+
+            <div class="col-md-6 order-md-1" data-aos="fade-up">
+                <div class="text-left pb-1 border-primary mb-4">
+                    <h2 class="text-primary">Ескертпелер</h2>
+                </div>
+                <form action="{% url 'notes' %}" method="post" class="p-5 bg-white">
+                    {% csrf_token %}
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label class="text-black">Мекеме</label>
+                            {{ form.organization }}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label class="text-black">Тақырыбы</label>
+                            {{ form.title }}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label class="text-black">Сипаттама</label>
+                            {{ form.description }}
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Қосу" class="btn btn-primary py-2 px-4 text-white">
+                            <form>
+                                <input type="button" value="Басып шығару" onclick="window.print()"
+                                       class="btn btn-primary py-2 px-4 text-white">
+                            </form>
+                        </div>
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+        <div class="site-section border-bottom" id="section-our-team">
+            <div class="container">
+
+                <div class="row">
+                    {% for note in notes %}
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+                        <div class="person">
+
+                            <h3>{{ note.title }}</h3>
+                            <p class="position text-muted" style="color:#a19f9f">{{ note.created }}</p>
+                            <p class="mb-4">{{ note.description }}</p>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

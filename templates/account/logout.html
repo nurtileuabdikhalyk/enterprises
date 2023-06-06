@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Шығу{% endblock %}
+
+{% block content %}
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+
+<section class="page-top-section set-bg">
+    <div class="container text-white">
+        <h2>s</h2>
+    </div>
+</section>
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center" style="background-color:#a19f9f;">
+
+                         <form class="login" method="POST" action="{% url 'account_logout' %}">
+                                {% csrf_token %}
+
+                            <div class="form-outline mb-4">
+                               <h5 class="heading mb-3" style="color:2855af"> Шыныменде жүйеден шыққыңыз келе ме?</h5>
+                            </div>
+
+                                <button type="submit" class="btn btn-primary py-3 px-5 text-white">Шығу
+                                </button>
+
+
+                            </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
